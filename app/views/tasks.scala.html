@@ -1,0 +1,21 @@
+@(allTasks: java.util.ArrayList[models.Task])
+
+@main("Task List Dispaly") {
+
+<h1>You have @allTasks.size() tasks.</h1>
+
+<table width="50%" style="border: 1px solid green;">
+    <tr>
+        <td style="font-weight: bold;">Title</td>
+        <td style="font-weight: bold;">Description</td>
+        <td style="font-weight: bold;">Date of Entry</td>
+    </tr>
+    @for(task <- allTasks){
+        <tr>
+            <td>@task.getTitle()</td>
+            <td>@task.getDescription()</td>
+            <td>@task.getDateOfEntry().toString()</td>
+        </tr>
+    }
+</table>
+}
