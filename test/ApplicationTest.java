@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import org.junit.*;
@@ -18,6 +15,8 @@ import play.libs.F.*;
 import static play.test.Helpers.*;
 import static org.fest.assertions.Assertions.*;
 
+import models.Task;
+import services.TaskManager;
 
 /**
 *
@@ -41,7 +40,12 @@ public class ApplicationTest {
     }
 
     @Test
-    public void renterListDisplayTemplate(){
-        //Send request to /tasks and assert that response contains the list of tasks
+    public void renderListDisplayTemplate(){
+        Task task = new Task("Task 1", "Task 1 content", new Date());
+        TaskManager taskManager = new TaskManager();
+        taskManager.addNewTask(task);
+        ArrayList<Task> allTasks = taskManager.returnEntireTaskList();
+        Content html = views.html.tasks.render(allTasks);
+        assertThat(contentType(html)).isEqualTo("text/html");
     }
 }

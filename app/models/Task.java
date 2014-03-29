@@ -2,9 +2,6 @@ package models;
 
 import java.util.Date;
 
-/**
- * Created by User on 3/22/2014.
- */
 public class Task {
 
     private final String title;
@@ -45,4 +42,8 @@ public class Task {
         return false;
     }
 
+    @Override
+    public String toString() {
+        return title +" " + description + " " + dateOfEntry;
+    }
 }
